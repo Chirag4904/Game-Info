@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { loadDetail } from "../actions/detailAction";
 import MovieDetail from "./MovieDetail";
 import { Link } from "react-router-dom";
-const Movie = ({ name, released, id, image }) => {
+const Movie = ({ name, released, id, image, platform_available }) => {
 	// const base_image_url = "https://image.tmdb.org/t/p/original";
 	// const image_url = `${base_image_url}${image}`;
 	const dispatch = useDispatch();
@@ -14,6 +14,7 @@ const Movie = ({ name, released, id, image }) => {
 		dispatch(loadDetail(id));
 		return <MovieDetail />;
 	};
+
 	return (
 		<StyledMovie onClick={loadDetailHandler}>
 			<Link to={`/movie/${id}`}>

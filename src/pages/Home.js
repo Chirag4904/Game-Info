@@ -33,6 +33,7 @@ const Home = () => {
 						id={movie.id}
 						image={movie.backdrop_path}
 						key={movie.id}
+						platform_available={true}
 					/>
 				))}
 			</Movies>
@@ -45,6 +46,7 @@ const Home = () => {
 						id={movie.id}
 						image={movie.backdrop_path}
 						key={movie.id}
+						platform_available={true}
 					/>
 				))}
 			</Movies>
@@ -59,6 +61,7 @@ const Home = () => {
 							movie.backdrop_path ? movie.backdrop_path : movie.poster_path
 						}
 						key={movie.id}
+						platform_available={false}
 					/>
 				))}
 			</Movies>

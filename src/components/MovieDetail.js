@@ -21,7 +21,7 @@ const MovieDetail = () => {
 							<Info>
 								<h3>Platforms</h3>
 								<Platforms>
-									{platforms.slice(0, 5).map((platform) => (
+									{platforms.map((platform) => (
 										// <div className="platform_logo">
 										<h3 key={platform.provider_id}>{platform.provider_name}</h3>
 										// <img
@@ -47,7 +47,7 @@ const MovieDetail = () => {
 								<img
 									src={`https://image.tmdb.org/t/p/original${screenshot.file_path}`}
 									alt={screenshot.file_path}
-									// key={movie.i}
+									key={screen.vote_average}
 								/>
 							))}
 						</Gallery>
