@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { useDispatch } from "react-redux";
 import { loadDetail } from "../actions/detailAction";
 import MovieDetail from "./MovieDetail";
-
+import { Link } from "react-router-dom";
 const Movie = ({ name, released, id, image }) => {
 	// const base_image_url = "https://image.tmdb.org/t/p/original";
 	// const image_url = `${base_image_url}${image}`;
@@ -16,9 +16,11 @@ const Movie = ({ name, released, id, image }) => {
 	};
 	return (
 		<StyledMovie onClick={loadDetailHandler}>
-			<h3>{name}</h3>
-			<p>{released}</p>
-			<img src={`https://image.tmdb.org/t/p/original${image}`} alt={name} />
+			<Link to={`/movie/${id}`}>
+				<h3>{name}</h3>
+				<p>{released}</p>
+				<img src={`https://image.tmdb.org/t/p/original${image}`} alt={name} />
+			</Link>
 		</StyledMovie>
 	);
 };
@@ -28,9 +30,7 @@ const StyledMovie = styled(motion.div)`
 	box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
 	text-align: center;
 	border-radius: 1rem;
-	/* h3 {
-		padding: 1.5rem;
-	} */
+	cursor: pointer;
 
 	img {
 		width: 100%;

@@ -5,10 +5,12 @@ import Movie from "../components/Movie";
 
 import styled from "styled-components";
 import { motion } from "framer-motion";
-
+import { useLocation } from "react-router-dom";
 import MovieDetail from "../components/MovieDetail";
 
 const Home = () => {
+	const location = useLocation();
+	const pathId = location.pathname.split("/")[2];
 	const dispatch = useDispatch();
 	useEffect(() => {
 		dispatch(loadMovies());
@@ -21,7 +23,7 @@ const Home = () => {
 	const { popular, upcoming, newMovies } = useSelector((state) => state.movies);
 	return (
 		<MovieList>
-			<MovieDetail />
+			{pathId && <MovieDetail />}
 			<h2>Popular Movies</h2>
 			<Movies>
 				{popular.slice(start_index, final_index).map((movie) => (

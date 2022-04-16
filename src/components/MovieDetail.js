@@ -5,51 +5,56 @@ import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 
 const MovieDetail = () => {
-	const { screen, movie, platforms } = useSelector((state) => state.detail);
-	console.log(screen);
+	const { screen, movie, platforms, isLoading } = useSelector(
+		(state) => state.detail
+	);
 	return (
-		<CardShadow>
-			<Detail>
-				<Stats>
-					<div className="rating">
-						<h3>{movie.title}</h3>
-						<p>Popularity: {movie.popularity}</p>
-					</div>
-					<Info>
-						<h3>Platforms</h3>
-						<Platforms>
-							{platforms.slice(0, 5).map((platform) => (
-								// <div className="platform_logo">
-								<h3 key={platform.provider_id}>{platform.provider_name}</h3>
-								// <img
-								// 	src={`https://image.tmdb.org/t/p/original${platform.logo_path}`}
-								// 	alt=""
-								// />
-								// </div>
+		<>
+			{!isLoading && (
+				<CardShadow>
+					<Detail>
+						<Stats>
+							<div className="rating">
+								<h3>{movie.title}</h3>
+								<p>Popularity: {movie.popularity}</p>
+							</div>
+							<Info>
+								<h3>Platforms</h3>
+								<Platforms>
+									{platforms.slice(0, 5).map((platform) => (
+										// <div className="platform_logo">
+										<h3 key={platform.provider_id}>{platform.provider_name}</h3>
+										// <img
+										// 	src={`https://image.tmdb.org/t/p/original${platform.logo_path}`}
+										// 	alt=""
+										// />
+										// </div>
+									))}
+								</Platforms>
+							</Info>
+						</Stats>
+						<Media>
+							<img
+								src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
+								alt={movie.title}
+							/>
+						</Media>
+						<Description>
+							<p>{movie.overview}</p>
+						</Description>
+						<Gallery>
+							{screen.slice(6, 11).map((screenshot) => (
+								<img
+									src={`https://image.tmdb.org/t/p/original${screenshot.file_path}`}
+									alt={screenshot.file_path}
+									// key={movie.i}
+								/>
 							))}
-						</Platforms>
-					</Info>
-				</Stats>
-				<Media>
-					<img
-						src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
-						alt={movie.title}
-					/>
-				</Media>
-				<Description>
-					<p>{movie.overview}</p>
-				</Description>
-				<Gallery>
-					{screen.slice(6, 11).map((screenshot) => (
-						<img
-							src={`https://image.tmdb.org/t/p/original${screenshot.file_path}`}
-							alt={screenshot.file_path}
-							// key={movie.i}
-						/>
-					))}
-				</Gallery>
-			</Detail>
-		</CardShadow>
+						</Gallery>
+					</Detail>
+				</CardShadow>
+			)}
+		</>
 	);
 };
 
