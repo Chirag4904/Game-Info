@@ -6,19 +6,19 @@ import { useSelector } from "react-redux";
 
 const MovieDetail = () => {
 	const { screen, movie, platforms } = useSelector((state) => state.detail);
-	console.log(platforms);
+	console.log(screen);
 	return (
 		<CardShadow>
 			<Detail>
-				<div className="stats">
+				<Stats>
 					<div className="rating">
 						<h3>{movie.title}</h3>
 						<p>Popularity: {movie.popularity}</p>
 					</div>
-					<div className="info">
+					<Info>
 						<h3>Platforms</h3>
-						<div className="platforms">
-							{platforms.map((platform) => (
+						<Platforms>
+							{platforms.slice(0, 5).map((platform) => (
 								// <div className="platform_logo">
 								<h3 key={platform.provider_id}>{platform.provider_name}</h3>
 								// <img
@@ -27,27 +27,27 @@ const MovieDetail = () => {
 								// />
 								// </div>
 							))}
-						</div>
-					</div>
-				</div>
-				<div className="media">
+						</Platforms>
+					</Info>
+				</Stats>
+				<Media>
 					<img
 						src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
 						alt={movie.title}
 					/>
-				</div>
-				<div className="description">
+				</Media>
+				<Description>
 					<p>{movie.overview}</p>
-				</div>
-				<div className="gallery">
-					{screen.slice(6, 12).map((screenshot) => (
+				</Description>
+				<Gallery>
+					{screen.slice(6, 11).map((screenshot) => (
 						<img
 							src={`https://image.tmdb.org/t/p/original${screenshot.file_path}`}
 							alt={screenshot.file_path}
 							// key={movie.i}
 						/>
 					))}
-				</div>
+				</Gallery>
 			</Detail>
 		</CardShadow>
 	);
@@ -77,13 +77,52 @@ const CardShadow = styled(motion.div)`
 const Detail = styled(motion.div)`
 	width: 80%;
 	border-radius: 1rem;
-	padding: 2rem 20rem;
+	padding: 2rem 5rem;
 	background: white;
 	position: absolute;
 	left: 10%;
 	color: black;
 	img {
 		width: 100%;
+	}
+`;
+
+const Stats = styled(motion.div)`
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+`;
+
+const Info = styled(motion.div)`
+	text-align: center;
+`;
+
+const Platforms = styled(motion.div)`
+	display: flex;
+	justify-content: space-evenly;
+	img {
+		margin-left: 3rem;
+	}
+`;
+
+const Media = styled(motion.div)`
+	margin-top: 5rem;
+	img {
+		width: 100%;
+		height: 80vh;
+		object-fit: cover;
+		border-radius: 10px;
+	}
+`;
+
+const Description = styled(motion.div)`
+	margin: 5rem 0;
+`;
+
+const Gallery = styled(motion.div)`
+	img {
+		margin: 0.5rem 0;
+		border-radius: 2rem 0 2rem 0;
 	}
 `;
 export default MovieDetail;

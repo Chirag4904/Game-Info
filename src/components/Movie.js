@@ -28,6 +28,9 @@ const StyledMovie = styled(motion.div)`
 	box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
 	text-align: center;
 	border-radius: 1rem;
+	/* h3 {
+		padding: 1.5rem;
+	} */
 
 	img {
 		width: 100%;
