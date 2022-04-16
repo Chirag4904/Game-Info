@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loadGames } from "../actions/gamesAction";
-import Game from "../components/Game";
+import { loadMovies } from "../actions/moviesAction";
+import Movie from "../components/Movie";
 
 import styled from "styled-components";
 import { motion } from "framer-motion";
@@ -9,60 +9,65 @@ import { motion } from "framer-motion";
 const Home = () => {
 	const dispatch = useDispatch();
 	useEffect(() => {
-		dispatch(loadGames());
+		dispatch(loadMovies());
 	}, [dispatch]);
 
-	const { popular, upcoming, newGames } = useSelector((state) => state.games);
+	const start_index = Math.floor(Math.random() * 10);
+	const final_index = start_index + 10;
+
+	const { popular, upcoming, newMovies } = useSelector((state) => state.movies);
 	return (
-		<GameList>
-			<h2>Upcoming Games</h2>
-			<Games>
-				{upcoming.map((game) => (
-					<Game
-						name={game.name}
-						released={game.released}
-						id={game.id}
-						image={game.background_image}
-						key={game.id}
+		<MovieList>
+			<h2>Upcoming Movies</h2>
+			<Movies>
+				{upcoming.slice(start_index, final_index).map((movie) => (
+					<Movie
+						name={movie.original_title}
+						released={movie.release_date}
+						id={movie.id}
+						image={
+							movie.backdrop_path ? movie.backdrop_path : movie.poster_path
+						}
+						key={movie.id}
 					/>
 				))}
-			</Games>
-			<h2>Popular Games</h2>
-			<Games>
-				{popular.map((game) => (
-					<Game
-						name={game.name}
-						released={game.released}
-						id={game.id}
-						image={game.background_image}
-						key={game.id}
+			</Movies>
+			<h2>Popular Movies</h2>
+			<Movies>
+				{popular.slice(start_index, final_index).map((movie) => (
+					<Movie
+						name={movie.original_title}
+						released={movie.release_date}
+						id={movie.id}
+						image={movie.backdrop_path}
+						key={movie.id}
 					/>
 				))}
-			</Games>
-			<h2>New Games</h2>
-			<Games>
-				{newGames.map((game) => (
-					<Game
-						name={game.name}
-						released={game.released}
-						id={game.id}
-						image={game.background_image}
-						key={game.id}
+			</Movies>
+			<h2>New Movies</h2>
+			<Movies>
+				{newMovies.slice(start_index, final_index).map((movie) => (
+					<Movie
+						name={movie.original_title}
+						released={movie.release_date}
+						id={movie.id}
+						image={movie.backdrop_path}
+						key={movie.id}
 					/>
 				))}
-			</Games>
-		</GameList>
+			</Movies>
+		</MovieList>
 	);
 };
 
-const GameList = styled(motion.div)`
+const MovieList = styled(motion.div)`
 	padding: 0rem 5rem;
 	h2 {
 		padding: 5rem 0rem;
 	}
 `;
 
-const Games = styled(motion.div)`
+const Movies = styled(motion.div)`
 	min-height: 80vh;
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -70,3 +75,4 @@ const Games = styled(motion.div)`
 	grid-row-gap: 4.5rem;
 `;
 export default Home;
+// https://api.themoviedb.org/3/movie/157336?api_key=dbceed12e440d492620b9f8d466bdc87&append_to_response=images

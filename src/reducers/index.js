@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import gamesReducer from "./gamesReducer";
-
+import moviesReducer from "./moviesReducer";
+import detailReducer from "./detailReducer";
 // const initState = {
 // 	name: "",
 // 	isLogged: false,
@@ -13,8 +13,8 @@ import gamesReducer from "./gamesReducer";
 // };
 
 const rootReducer = combineReducers({
-	games: gamesReducer,
-	// user: userReducer,
+	movies: moviesReducer,
+	detail: detailReducer,
 });
 
 export default rootReducer;

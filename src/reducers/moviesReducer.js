@@ -1,17 +1,17 @@
 const initState = {
 	popular: [],
-	newGames: [],
+	newMovies: [],
 	upcoming: [],
 	searched: [],
 };
-const gamesReducer = (state = initState, action) => {
+const moviesReducer = (state = initState, action) => {
 	switch (action.type) {
-		case "FETCH_GAMES":
+		case "FETCH_MOVIES":
 			return {
 				...state,
 				popular: action.payload.popular,
 				upcoming: action.payload.upcoming,
-				newGames: action.payload.newGames,
+				newMovies: action.payload.newMovies,
 			};
 
 		default:
@@ -19,4 +19,4 @@ const gamesReducer = (state = initState, action) => {
 	}
 };
 
-export default gamesReducer;
+export default moviesReducer;
