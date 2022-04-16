@@ -6,32 +6,22 @@ import Movie from "../components/Movie";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
+import MovieDetail from "../components/MovieDetail";
+
 const Home = () => {
 	const dispatch = useDispatch();
 	useEffect(() => {
 		dispatch(loadMovies());
 	}, [dispatch]);
-
-	const start_index = Math.floor(Math.random() * 10);
-	const final_index = start_index + 10;
+	// const start_index = Math.floor(Math.random() * 10);
+	// const final_index = start_index + 10;
+	const start_index = 0;
+	const final_index = 10;
 
 	const { popular, upcoming, newMovies } = useSelector((state) => state.movies);
 	return (
 		<MovieList>
-			<h2>Upcoming Movies</h2>
-			<Movies>
-				{upcoming.slice(start_index, final_index).map((movie) => (
-					<Movie
-						name={movie.original_title}
-						released={movie.release_date}
-						id={movie.id}
-						image={
-							movie.backdrop_path ? movie.backdrop_path : movie.poster_path
-						}
-						key={movie.id}
-					/>
-				))}
-			</Movies>
+			<MovieDetail />
 			<h2>Popular Movies</h2>
 			<Movies>
 				{popular.slice(start_index, final_index).map((movie) => (
@@ -52,6 +42,20 @@ const Home = () => {
 						released={movie.release_date}
 						id={movie.id}
 						image={movie.backdrop_path}
+						key={movie.id}
+					/>
+				))}
+			</Movies>
+			<h2>Upcoming Movies</h2>
+			<Movies>
+				{upcoming.slice(start_index, final_index).map((movie) => (
+					<Movie
+						name={movie.original_title}
+						released={movie.release_date}
+						id={movie.id}
+						image={
+							movie.backdrop_path ? movie.backdrop_path : movie.poster_path
+						}
 						key={movie.id}
 					/>
 				))}

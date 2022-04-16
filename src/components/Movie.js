@@ -7,8 +7,8 @@ import { loadDetail } from "../actions/detailAction";
 import MovieDetail from "./MovieDetail";
 
 const Movie = ({ name, released, id, image }) => {
-	const base_image_url = "https://image.tmdb.org/t/p/original";
-	const image_url = `${base_image_url}${image}`;
+	// const base_image_url = "https://image.tmdb.org/t/p/original";
+	// const image_url = `${base_image_url}${image}`;
 	const dispatch = useDispatch();
 	const loadDetailHandler = () => {
 		dispatch(loadDetail(id));
@@ -18,7 +18,7 @@ const Movie = ({ name, released, id, image }) => {
 		<StyledMovie onClick={loadDetailHandler}>
 			<h3>{name}</h3>
 			<p>{released}</p>
-			<img src={image_url} alt={name} />
+			<img src={`https://image.tmdb.org/t/p/original${image}`} alt={name} />
 		</StyledMovie>
 	);
 };

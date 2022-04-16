@@ -12,7 +12,6 @@ export const loadMovies = () => async (dispatch) => {
 	const upcomingData = await axios.get(
 		`${upcomingMoviesUrl()}&page=${Math.floor(Math.random() * 3) + 1}`
 	);
-	console.log(upcomingData);
 
 	dispatch({
 		type: "FETCH_MOVIES",

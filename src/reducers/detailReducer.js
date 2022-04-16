@@ -1,4 +1,8 @@
-const initialState = { movie: {}, screen: {} };
+const initialState = {
+	movie: { o1: "" },
+	screen: { o2: "" },
+	platforms: { o3: "" },
+};
 const detailReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case "GET_DETAIL":
@@ -6,6 +10,7 @@ const detailReducer = (state = initialState, action) => {
 				...state,
 				movie: action.payload.movie,
 				screen: action.payload.screen,
+				platforms: action.payload.platforms,
 			};
 		default:
 			return { ...state };
