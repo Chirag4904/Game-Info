@@ -26,7 +26,7 @@ const currentDate = `${currentYear}-${currentMonth}-${currentDay}`;
 const lastYear = `${currentYear - 1}-${currentMonth}-${currentDay}`;
 // const nextYear = `${currentYear + 1}-${currentMonth}-${currentDay}`;
 
-const API_KEY = "dbceed12e440d492620b9f8d466bdc87";
+// const API_KEY = "dbceed12e440d492620b9f8d466bdc87";
 const base_url = `https://api.themoviedb.org/3/discover/movie?api_key=dbceed12e440d492620b9f8d466bdc87&language=en-US`;
 
 export const popularMoviesUrl = () =>
@@ -45,5 +45,5 @@ const start_url = "https://api.themoviedb.org/3/movie/";
 const end_url = "?api_key=dbceed12e440d492620b9f8d466bdc87";
 
 export const movieDetailUrl = (movie_id) => `${start_url}${movie_id}${end_url}`;
-export const platformDetailUrl = (movie_id) =>
-	`${start_url}${movie_id}/watch/providers${end_url}`;
+// export const platformDetailUrl = (movie_id) =>
+// 	`${start_url}${movie_id}/watch/providers${end_url}`;

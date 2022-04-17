@@ -6,21 +6,29 @@ import { useDispatch } from "react-redux";
 import { loadDetail } from "../actions/detailAction";
 import MovieDetail from "./MovieDetail";
 import { Link } from "react-router-dom";
-const Movie = ({ name, released, id, image, platform_available }) => {
-	// const base_image_url = "https://image.tmdb.org/t/p/original";
-	// const image_url = `${base_image_url}${image}`;
+const Movie = ({ name, released, id, image }) => {
+	const stringId = id.toString();
+	// console.log(typeof stringId, "pathid");
+
 	const dispatch = useDispatch();
 	const loadDetailHandler = () => {
+		console.log(typeof stringId, stringId, "movie.js stringid");
+		document.body.style.overflow = "hidden";
 		dispatch(loadDetail(id));
 		return <MovieDetail />;
 	};
 
 	return (
-		<StyledMovie onClick={loadDetailHandler}>
+		<StyledMovie layoutId={stringId} onClick={loadDetailHandler}>
 			<Link to={`/movie/${id}`}>
-				<h3>{name}</h3>
+				<motion.h3 layoutId={`image ${stringId}`}>{name}</motion.h3>
 				<p>{released}</p>
-				<img src={`https://image.tmdb.org/t/p/original${image}`} alt={name} />
+				<motion.img
+					src={`https://image.tmdb.org/t/p/original${image}`}
+					alt={name}
+					key={id}
+					layoutId={`image ${stringId}`}
+				/>
 			</Link>
 		</StyledMovie>
 	);
@@ -32,11 +40,17 @@ const StyledMovie = styled(motion.div)`
 	text-align: center;
 	border-radius: 1rem;
 	cursor: pointer;
+	overflow: hidden;
+
+	h3 {
+		transform: translateY(-229px);
+	}
 
 	img {
 		width: 100%;
 		height: 40vh;
 		object-fit: cover;
+		border-radius: 1rem;
 	}
 `;
 export default Movie;

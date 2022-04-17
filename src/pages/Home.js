@@ -4,7 +4,7 @@ import { loadMovies } from "../actions/moviesAction";
 import Movie from "../components/Movie";
 
 import styled from "styled-components";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence, AnimateSharedLayout } from "framer-motion";
 import { useLocation } from "react-router-dom";
 import MovieDetail from "../components/MovieDetail";
 
@@ -23,7 +23,11 @@ const Home = () => {
 	const { popular, upcoming, newMovies } = useSelector((state) => state.movies);
 	return (
 		<MovieList>
-			{pathId && <MovieDetail />}
+			{/* <AnimateSharedLayout type="crossfade"> */}
+			<AnimatePresence>
+				{pathId && <MovieDetail pathId={pathId} />}
+			</AnimatePresence>
+
 			<h2>Popular Movies</h2>
 			<Movies>
 				{popular.slice(start_index, final_index).map((movie) => (
@@ -33,7 +37,6 @@ const Home = () => {
 						id={movie.id}
 						image={movie.backdrop_path}
 						key={movie.id}
-						platform_available={true}
 					/>
 				))}
 			</Movies>
@@ -46,7 +49,6 @@ const Home = () => {
 						id={movie.id}
 						image={movie.backdrop_path}
 						key={movie.id}
-						platform_available={true}
 					/>
 				))}
 			</Movies>
@@ -61,10 +63,10 @@ const Home = () => {
 							movie.backdrop_path ? movie.backdrop_path : movie.poster_path
 						}
 						key={movie.id}
-						platform_available={false}
 					/>
 				))}
 			</Movies>
+			{/* </AnimateSharedLayout> */}
 		</MovieList>
 	);
 };
